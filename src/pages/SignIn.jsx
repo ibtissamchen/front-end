@@ -1,61 +1,83 @@
-// src/SignIn.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Layout from '../components/Layout';
 
-function SignIn() {
+export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Connexion avec : ${email} / ${password}`);
-    // Tu peux ici appeler ton backend Flask pour vérifier
+    // TODO: appeler le backend pour vérifier
+    // Simule connexion réussie
+    navigate('/dashboard');
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '400px', margin: 'auto' }}>
-      <h2>Connexion</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Email :</label><br />
+    <Layout>
+      <div style={styles.container}>
+        <h2 style={styles.title}>Se connecter</h2>
+        <form onSubmit={handleSubmit} style={styles.form}>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
-            style={inputStyle}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            style={styles.input}
           />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Mot de passe :</label><br />
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Mot de passe"
             required
-            style={inputStyle}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            style={styles.input}
           />
-        </div>
-        <button type="submit" style={buttonStyle}>Se connecter</button>
-      </form>
-    </div>
+          <button type="submit" style={styles.button}>Connexion</button>
+        </form>
+      </div>
+    </Layout>
   );
 }
 
- const inputStyle = {
-  width: '100%',
-  padding: '0.5rem',
-  marginTop: '0.25rem',
-  borderRadius: '5px',
-  border: '1px solid #ccc',
+const styles = {
+  container: {
+    maxWidth: '400px',
+    margin: '3rem auto',
+    padding: '2rem',
+    backgroundColor: '#2c2c2c',
+    borderRadius: '10px',
+    boxShadow: '0 0 15px rgba(100,108,255,0.5)',
+    color: 'white',
+  },
+  title: {
+    marginBottom: '1.5rem',
+    textAlign: 'center',
+    color: '#646cff',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.25rem',
+  },
+  input: {
+    padding: '0.75rem 1rem',
+    borderRadius: '6px',
+    border: 'none',
+    fontSize: '1rem',
+    outline: 'none',
+  },
+  button: {
+    padding: '0.75rem',
+    borderRadius: '6px',
+    backgroundColor: '#646cff',
+    color: 'white',
+    fontWeight: '600',
+    fontSize: '1.1rem',
+    cursor: 'pointer',
+    border: 'none',
+    transition: 'background-color 0.3s',
+  },
 };
-
- const buttonStyle = {
-  padding: '0.5rem 1rem',
-  backgroundColor: '#007bff',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '5px',
-  cursor: 'pointer',
-};
-
-export default SignIn;
