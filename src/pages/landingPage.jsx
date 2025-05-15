@@ -1,129 +1,60 @@
 import React from 'react';
+import { ShieldCheck, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/safeshare-logo.png'; // mets le vrai chemin ici
-import img1 from '../assets/image1.png';  // image 1
-import img2 from '../assets/image2.png';  // image 2
 
-export default function LandingPage() {
+const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={styles.page}>
-      {/* HEADER */}
-      <header style={styles.header}>
-        <div style={styles.logoBlock}>
-          <img src={logo} alt="SafeShare logo" style={styles.logo} />
-        </div>
-        <div style={styles.headerButtons}>
-          <button style={styles.primaryBtn} onClick={() => navigate('/signup')}>S'INSCRIRE</button>
-          <button style={styles.secondaryBtn} onClick={() => navigate('/signin')}>SE CONNECTER</button>
-        </div>
-      </header>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6">
+      <div className="max-w-4xl w-full bg-white rounded-2xl shadow-2xl p-10 text-center space-y-10 transition-all duration-300">
 
-      {/* TRAIT */}
-      <hr style={styles.divider} />
-
-      {/* CONTENU PRINCIPAL */}
-      <div style={styles.content}>
-        <div style={styles.left}>
-          <p style={styles.slogan}>Partager en toute confiance : sécurité maximale, simplicité absolue.</p>
+        {/* Header / Logo */}
+        <div className="flex items-center justify-center gap-6">
+          <ShieldCheck className="w-20 h-20 text-blue-600 animate-pulse" />
+          <h1 className="text-4xl font-extrabold text-blue-700 tracking-tight">
+            SafeShare
+          </h1>
         </div>
 
-        <div style={styles.right}>
-          <img src={img1} alt="sécurité" style={styles.image1} />
-          <div style={styles.welcomeBlock}>
-            <h2 style={styles.welcome}>BIENVENUE</h2>
-            <img src={img2} alt="partage" style={styles.image2} />
-          </div>
+        {/* Slogan + Feature Message */}
+        <div className="space-y-4">
+          <p className="text-xl italic text-gray-700">
+            “Partager en toute confiance : sécurité maximale, simplicité absolue.”
+          </p>
+
+          <p className="text-lg text-blue-800 font-medium leading-relaxed">
+            Avec <span className="font-bold">SafeShare</span>, vous pouvez stocker, partager et collaborer
+            sur vos fichiers dans des <span className="font-bold">espaces de travail sécurisés</span>, le tout grâce à une solution
+            <span className="text-blue-500 font-semibold"> open-source chiffrée</span> de bout en bout.
+          </p>
         </div>
+
+        {/* Call to Action */}
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() => navigate('/signup')}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-bold hover:bg-blue-700 transition"
+          >
+            S’inscrire
+          </button>
+          <button
+            onClick={() => navigate('/signin')}
+            className="bg-white border border-blue-600 text-blue-700 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-50 transition"
+          >
+            Se connecter
+          </button>
+        </div>
+
+        {/* Testimonials/Imagery (Optional future section) */}
+
+        {/* Footer */}
+        <footer className="text-xs text-gray-500 mt-8">
+          © 2025 SafeShare. Une initiative sécurisée pour la communauté UNIT.
+        </footer>
       </div>
     </div>
   );
-}
-
-const styles = {
-  page: {
-    backgroundColor: '#fff',
-    color: '#000',
-    minHeight: '100vh',
-    fontFamily: 'Arial, sans-serif',
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '1rem 2rem',
-    alignItems: 'center',
-  },
-  logoBlock: {
-    flex: '0 0 auto',
-  },
-  logo: {
-    height: '80px',
-  },
-  headerButtons: {
-    display: 'flex',
-    gap: '1rem',
-  },
-  primaryBtn: {
-    backgroundColor: '#2c66c3',
-    color: '#fff',
-    padding: '0.6rem 1.2rem',
-    border: 'none',
-    fontWeight: 'bold',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
-  secondaryBtn: {
-    backgroundColor: '#2c66c3',
-    color: '#fff',
-    padding: '0.6rem 1.2rem',
-    border: 'none',
-    fontWeight: 'bold',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
-  divider: {
-    borderTop: '4px solid #000',
-    margin: '0 2rem',
-  },
-  content: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '2rem 4rem',
-    alignItems: 'center',
-  },
-  left: {
-    flex: 1,
-    fontSize: '1.5rem',
-    lineHeight: '2.2rem',
-  },
-  slogan: {
-    marginRight: '2rem',
-  },
-  right: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  image1: {
-    width: '250px',
-    height: 'auto',
-    marginBottom: '1rem',
-    borderRadius: '6px',
-  },
-  welcomeBlock: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-  },
-  welcome: {
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    fontSize: '1.2rem',
-  },
-  image2: {
-    width: '140px',
-    height: 'auto',
-    borderRadius: '6px',
-  },
 };
+
+export default LandingPage;

@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -16,6 +15,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* 👇 C’est bien cette ligne qui rend le LandingPage à la racine */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
